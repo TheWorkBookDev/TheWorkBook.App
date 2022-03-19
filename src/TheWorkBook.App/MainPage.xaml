@@ -11,4 +11,13 @@
         </b:BlazorWebView.RootComponents>
     </b:BlazorWebView>
 
+    <ScrollView>
+        <StackLayout Spacing="25"
+                     VerticalOptions="CenterAndExpand">
+
+            <Button Text="Click to Log In" Clicked="OnLoginClicked" HorizontalOptions="Center"/>
+
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>
