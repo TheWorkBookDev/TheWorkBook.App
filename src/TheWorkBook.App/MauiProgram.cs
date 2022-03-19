@@ -29,23 +29,35 @@ public static class MauiProgram
 
         builder.Services.AddTransient<MainPage>();
 
-        // When locally debugging
-        //List<string> loopbackAddresses = new List<string>();
-        //loopbackAddresses.Add("127.0.0.1");
-        //loopbackAddresses.Add("192.168.1.5");
+        // builder.Services.AddTransient<OidcClient>(sp =>
+        //    new OidcClient(new OidcClientOptions
+        //    {
+        //        Authority = "https://auth.theworkbook.ie",
+        //        ClientId = "native",
+        //        RedirectUri = "theworkbook://connect/authorize",
+        //        Scope = "openid profile api offline_access",
+        //        Browser = sp.GetRequiredService<WebAuthenticatorBrowser>()
+        //    })
+        //);
+
+        //When locally debugging
+        List<string> loopbackAddresses = new()
+        {
+            "127.0.0.1",
+            "192.168.1.5"
+        };
 
         builder.Services.AddTransient<OidcClient>(sp =>
             new OidcClient(new OidcClientOptions
             {
-                //Authority = "http://192.168.1.5:5001",
-                Authority = "https://auth.theworkbook.ie",
+                Authority = "http://192.168.1.5:5001",
                 ClientId = "native",
-                RedirectUri = "theworkbook://authorized",
+                RedirectUri = "theworkbook://authorize",
                 Scope = "openid profile api offline_access",
                 Browser = sp.GetRequiredService<WebAuthenticatorBrowser>(),
 
                 // When locally debugging
-                //Policy = new Policy() { Discovery = new IdentityModel.Client.DiscoveryPolicy() { RequireHttps = false, LoopbackAddresses = loopbackAddresses } },
+                Policy = new Policy() { Discovery = new IdentityModel.Client.DiscoveryPolicy() { RequireHttps = false, LoopbackAddresses = loopbackAddresses } },
             })
         );
 

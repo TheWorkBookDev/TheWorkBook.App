@@ -2,7 +2,7 @@
 using System.Diagnostics;
 namespace TheWorkBook.App;
 
-internal class WebAuthenticatorBrowser : IBrowser
+internal class WebAuthenticatorBrowser : IdentityModel.OidcClient.Browser.IBrowser
 {
     public async Task<BrowserResult> InvokeAsync(BrowserOptions options, CancellationToken cancellationToken = default)
     {
