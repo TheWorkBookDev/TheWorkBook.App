@@ -1,18 +1,31 @@
 ﻿@page "/categories"
 
 @using TheWorkBook.Data
+@using TheWorkBook.Dto
 @inject CategoryService CategoryService
 
 <h1>Choose Category</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
+@*<p>This component demonstrates fetching data from a service.</p>*@
+
+@if (categories == null)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	@foreach (var categoryDto in categories)
+	{
+		@categoryDto.CategoryName
+	}
+}
 
 
 @code {
-	private WeatherForecast[] forecasts;
+	private List<CategoryDto> categories;
 
 	protected override async Task OnInitializedAsync()
 	{
-		//forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+		categories = await CategoryService.GetCateogies();
 	}
 }
