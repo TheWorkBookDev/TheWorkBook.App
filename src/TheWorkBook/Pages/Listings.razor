@@ -1,10 +1,10 @@
-﻿@page "/categories"
+﻿@page "/listings/{Id:int}"
 
 @using TheWorkBook.Data
 @using TheWorkBook.Dto
 @inject CategoryService CategoryService
 
-<h1>Choose Category</h1>
+<h1>Listings</h1>
 
 @if (categories == null)
 {
@@ -16,7 +16,7 @@ else
 		@foreach (var categoryDto in categories)
 		{
 			<div class="category">
-				<a class="btn btn-secondary" href="/Listings/@categoryDto.CategoryId">
+				<a class="btn btn-secondary" href="/listings/@categoryDto.CategoryId">
 					@categoryDto.CategoryName
 				</a>				
 			</div>
@@ -26,10 +26,13 @@ else
 
 
 @code {
+	[Parameter]
+    public int Id { get; set; }
+
 	private List<CategoryDto> categories;
 
 	protected override async Task OnInitializedAsync()
 	{
-		categories = await CategoryService.GetCateogies();
+		//categories = await CategoryService.GetCateogies();
 	}
 }
