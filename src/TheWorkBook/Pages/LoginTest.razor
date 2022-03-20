@@ -1,0 +1,27 @@
+﻿@page "/logintest"
+@using TheWorkBook.Data
+@using TheWorkBook.Dto
+@using IdentityModel.OidcClient;
+@inject IdentityModel.OidcClient.OidcClient oidcClient
+
+<h1>Login test</h1>
+
+This page exists to test login with IdentityServer.
+
+
+@code {
+
+	protected override async Task OnInitializedAsync()
+	{
+		try
+		{
+			var loginResult = await oidcClient.LoginAsync(new LoginRequest());
+		}
+		catch (Exception ex)
+		{
+			
+		}
+	}
+
+	
+}

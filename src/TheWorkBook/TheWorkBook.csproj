@@ -15,7 +15,7 @@
 		<ApplicationTitle>TheWorkBook</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.theworkbook</ApplicationId>
+		<ApplicationId>com.theworkbook.app</ApplicationId>
 		<ApplicationId Condition="$(TargetFramework.Contains('-windows'))">8E0F7854-A34F-4E82-A091-D6B7C551D50A</ApplicationId>
 
 		<!-- Versions -->
@@ -40,7 +40,7 @@
 			Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#0c0c0d" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />

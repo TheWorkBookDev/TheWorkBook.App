@@ -43,33 +43,37 @@ public static class MauiProgram
             "192.168.1.5"
         };
 
-        builder.Services.AddTransient<OidcClient>(sp =>
-            new OidcClient(new OidcClientOptions
-            {
-                Authority = "http://192.168.1.5:5001",
-                ClientId = "native",
-                RedirectUri = "theworkbook://authorize",
-                Scope = "openid profile api offline_access",
-                Browser = sp.GetRequiredService<WebAuthenticatorBrowser>(),
-
-                // When locally debugging
-                Policy = new Policy() { Discovery = new IdentityModel.Client.DiscoveryPolicy() { RequireHttps = false, LoopbackAddresses = loopbackAddresses } },
-            })
-        );
-
-        // When using https://auth.theworkbook.ie.
+        // When debugging locally.
         //builder.Services.AddTransient<OidcClient>(sp =>
-        //   new OidcClient(new OidcClientOptions
-        //   {
-        //       Authority = "https://auth.theworkbook.ie",
-        //       ClientId = "native",
-        //       RedirectUri = "theworkbook://connect/authorize",
-        //       Scope = "openid profile api offline_access",
-        //       Browser = sp.GetRequiredService<WebAuthenticatorBrowser>()
-        //   })
+        //    new OidcClient(new OidcClientOptions
+        //    {
+        //        Authority = "http://192.168.1.5:5001",
+        //        ClientId = "native",
+        //        RedirectUri = "theworkbook://authorize",
+        //        Scope = "openid profile api offline_access",
+        //        Browser = sp.GetRequiredService<WebAuthenticatorBrowser>(),
+
+        //        // When locally debugging
+        //        Policy = new Policy() { Discovery = new IdentityModel.Client.DiscoveryPolicy() { RequireHttps = false, LoopbackAddresses = loopbackAddresses } },
+        //    })
         //);
 
-        return builder.Build();
+		// When using https://auth.theworkbook.ie.
+		builder.Services.AddTransient<OidcClient>(sp =>
+			new OidcClient(new OidcClientOptions
+			{
+				Authority = "https://auth.theworkbook.ie",
+				ClientId = "native",
+				RedirectUri = "theworkbook://authorize",
+				Scope = "openid profile api offline_access",
+				Browser = sp.GetRequiredService<WebAuthenticatorBrowser>(),
+
+				// When locally debugging
+				Policy = new Policy() { Discovery = new IdentityModel.Client.DiscoveryPolicy() { RequireHttps = true, LoopbackAddresses = loopbackAddresses } },
+			})
+		);
+
+		return builder.Build();
     }
 
     private static void ConfigureConfiguration(MauiAppBuilder builder)
