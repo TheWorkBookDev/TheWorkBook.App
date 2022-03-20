@@ -22,8 +22,17 @@ public static class MauiProgram
 
         ConfigureConfiguration(builder);
 
+        builder.Services.AddSingleton<AccessTokenHttpMessageHandler>();
+        builder.Services.AddTransient<HttpClient>(sp =>
+            new HttpClient(sp.GetRequiredService<AccessTokenHttpMessageHandler>())
+            {
+                BaseAddress = new Uri("https://api.theworkbook.ie")
+            });
+
         builder.Services.AddBlazorWebView();
+
         builder.Services.AddSingleton<WeatherForecastService>();
+        builder.Services.AddSingleton<CategoryService>();
 
         builder.Services.AddTransient<WebAuthenticatorBrowser>();
         builder.Services.AddTransient<MainPage>();
