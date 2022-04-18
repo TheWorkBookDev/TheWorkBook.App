@@ -1,8 +1,8 @@
-﻿using IdentityModel.OidcClient;
+﻿using System.Reflection;
+using IdentityModel.OidcClient;
 using Microsoft.AspNetCore.Components.WebView.Maui;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
-using System.Reflection;
 using TheWorkBook.Data;
 
 namespace TheWorkBook;
@@ -13,7 +13,6 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .RegisterBlazorMauiWebView()
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
@@ -29,10 +28,13 @@ public static class MauiProgram
                 BaseAddress = new Uri("https://api.theworkbook.ie")
             });
 
-        builder.Services.AddBlazorWebView();
+        builder.Services.AddMauiBlazorWebView();
 
         builder.Services.AddSingleton<WeatherForecastService>();
         builder.Services.AddSingleton<CategoryService>();
+        builder.Services.AddSingleton<LocationService>();
+        builder.Services.AddSingleton<SearchService>();
+        builder.Services.AddSingleton<UserService>();
 
         builder.Services.AddTransient<WebAuthenticatorBrowser>();
         builder.Services.AddTransient<MainPage>();
