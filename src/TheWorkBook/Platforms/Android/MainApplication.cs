@@ -3,7 +3,7 @@ using Android.Runtime;
 
 namespace TheWorkBook;
 
-[Application(UsesCleartextTraffic = true )]
+[Application(UsesCleartextTraffic = true)]
 //[Application]
 public class MainApplication : MauiApplication
 {

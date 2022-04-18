@@ -8,7 +8,7 @@ namespace TheWorkBook;
 [IntentFilter(new[] { Intent.ActionView },
     Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
     DataScheme = CALLBACK_SCHEME)]
-public class TheWorkBookWebAuthenticatorCallbackActivity : Microsoft.Maui.Essentials.WebAuthenticatorCallbackActivity
+public class TheWorkBookWebAuthenticatorCallbackActivity : Microsoft.Maui.Authentication.WebAuthenticatorCallbackActivity 
 {
     const string CALLBACK_SCHEME = "theworkbook";
 }
