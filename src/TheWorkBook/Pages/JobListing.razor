@@ -1,0 +1,161 @@
+﻿@page "/joblisting/{CategoryId:int}"
+
+@using TheWorkBook.Data
+@using TheWorkBook.Dto
+
+<div class="m-2">
+
+    <div class="row bg-light mb-4">
+        <div class="col-2">
+            <a href="/">
+                <i class="oi oi-chevron-left"></i>
+            </a>
+        </div>
+        <div class="col-6">
+            <h4>@_jobListingViewModel.SelectedCategory.CategoryName</h4>
+        </div>
+        <div class="col-2">
+            <a href="/postjob/@this.CategoryId" class="btn btn-primary tr-theme">
+                <i class="oi oi-plus"></i>
+            </a>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary tr-theme" @onclick="ToogleFilterDrawer">
+                <i class="oi oi-cog"></i>
+            </button>
+        </div>
+    </div>
+
+
+@*    <div class="row">
+        <div class="col-6 d-grid gap-2">
+            <button class="btn btn-primary" @onclick="ToogleFilterDrawer">
+            <i class="oi oi-magnifying-glass"></i>
+            Search
+            </button>
+            </div>
+        <div class="col-6 d-grid gap-2">
+            <button class="btn btn-primary" @onclick="ToogleFilterDrawer">
+                <i class="oi oi-cog"></i>
+            </button>
+        </div>
+    </div>*@
+
+    @if (_isFilterVisible)
+    {
+
+        <div class="bg-light p-2 mr-3 border border-primary position-absolute tr-open-drawer">
+
+            <hr />
+
+            <div class="row mb-4">
+                <div class="col-9">
+                    <RadzenAutoComplete Placeholder="Search..." Data="_jobListingViewModel.SearchList" TextProperty="Title" Change=@(args => OnSearchChange(args, "AutoComplete")) Style="width: 100%;" />
+                </div>
+                <div class="col-2">
+                    <span>
+                        <button class="btn btn-outline-primary tr-theme">
+                            <i class="oi oi-magnifying-glass"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <label><b class="">Base Location</b></label>
+
+                    <RadzenDropDown AllowClear="true" AllowFiltering="true" FilterCaseSensitivity="Radzen.FilterCaseSensitivity.CaseInsensitive"
+                                @bind-Value="multipleValues" Multiple="true" Placeholder="Select..." Data="_jobListingViewModel.LocationList" TextProperty="LocationName" ValueProperty="LocationId"
+                                Class="w-100" />
+                </div>
+            </div>
+
+
+            <div class="row mb-4">
+                <div class="col-12 d-grid gap-2">
+                    <button class="btn btn-outline-primary tr-theme" @onclick="UpdateSearch">Update Search</button>
+                </div>
+            </div>
+            <hr />
+        </div>
+    }
+
+    @if (!HasSearchResults)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="mt-4 position-relative">
+            <hr />
+            @foreach (var listing in _jobListingViewModel.SearchResponse.Listings)
+            {
+                @*Item 1 - start*@
+                <div class="shadow-lg p-3 mb-4 bg-white rounded-3">
+                    <div class="mb-4">
+                        <h4 class="d-inline">@listing.Title</h4>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>Hours needed:</b>
+
+                            </label>
+                            <span>
+                                30hrs/Week
+                            </span>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="float-end">
+                                <label class="">
+                                    <b>
+                                        Duration:
+                                    </b>
+                                </label>
+                                <div>
+                                    Less than 1 month
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label>
+                                <b>
+                                    Experience Level:
+                                </b>
+                            </label>
+                            <span>
+                                Expert
+                            </span>
+                        </div>
+                    </div>
+
+                    <p class="mt-4">
+                        @listing.MainDescription
+                    </p>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                Budget:
+                            </label>
+                            <span>
+                                @listing.Budget
+                            </span>
+                        </div>
+                        <div class="col-6">
+                            <a href="jobdetails/@listing.ListingId" class="btn btn-outline-primary tr-theme float-end">
+                                View Details
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <hr />
+            }
+        </div>
+    }
+</div>
+
+

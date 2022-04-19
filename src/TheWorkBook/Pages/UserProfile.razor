@@ -1,0 +1,74 @@
+﻿@page "/userprofile"
+
+<div class="row bg-light mb-5">
+    <div class="col-2">
+        <a href="joblisting">
+            <i class="oi oi-chevron-left"></i>
+        </a>
+    </div>
+    <div class="col-10">
+        <h4>My Profile</h4>
+    </div>
+</div>
+
+@if (MyInfo == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="m-2">
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    First Name
+                </label>
+                <span>
+                    <input class="form-control" type="text" placeholder="First Name" />
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Last Name
+                </label>
+                <span>
+                    <input class="form-control" type="text" placeholder="Last Name" />
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Email
+                </label>
+                <span>
+                    <input class="form-control" type="text" placeholder="First Name" />
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Mobile
+                </label>
+                <span>
+                    <input class="form-control" type="text" placeholder="Mobile" />
+                </span>
+            </div>
+        </div>
+
+
+
+        <div class="row my-5">
+            <div class="col-12 text-center">
+                <button class="btn btn-outline-primary " @onclick="Submit">Save Profile</button>
+            </div>
+        </div>
+    </div>
+}

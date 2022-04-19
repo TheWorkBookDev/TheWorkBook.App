@@ -1,0 +1,121 @@
+﻿@page "/postjob"
+@page "/postjob/{CategoryId:int}"
+
+<div class="row bg-light mb-5">
+    <div class="col-2">
+        <a href="/joblisting/@this.CategoryId">
+            <i class="oi oi-chevron-left"></i>
+        </a>
+    </div>
+    <div class="col-10">
+        <h4>Job Post</h4>
+    </div>
+</div>
+
+<div class="m-2">
+
+    <div class="shadow-lg p-3 mb-5 bg-white rounded-3">
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>Job Title</label>
+
+                <input class="form-control" placeholder="Enter job title..." />
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>Hours Needed</label>
+                <span>
+                    <select class="form-select">
+                        <option svalue="0">Less than 40 Hours/Week</option>
+                        <option value="1">Less than 30 Hours/Week</option>
+                        <option value="2">Less than 20 Hours/Week</option>
+                        <option value="3">Less than 10 Hours/Week</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+
+            <div class="col-12">
+                <label>
+                    Duration
+                </label>
+                <span>
+                    <select class="form-select">
+                        <option value="1">Less than 1 Month</option>
+                        <option value="2">1 to 3 Month</option>
+                        <option value="3">3 to 6 Month</option>
+                        <option value="4">More than 6 Month</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Experience Level
+                </label>
+                <span>
+                    <select class="form-select">
+                        <option value="1">Beginner</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Expert</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Budget
+                </label>
+                <span>
+                    <input class="form-control" type="number" placeholder="Budget" min="1" max="999" />
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Per
+                </label>
+                <span>
+                    <select class="form-select">
+                        <option value="-1">Choose</option>
+                        <option>Hour</option>
+                        <option>Day</option>
+                        <option>Week</option>
+                        <option>Job</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Job Description
+                </label>
+                <span>
+                    <textarea class="form-control" placeholder="Enter job description here..." rows="5" />
+                </span>
+            </div>
+        </div>
+
+
+        <div class="row my-5">
+            <div class="col-12 text-center">
+                <button class="btn btn-outline-primary tr-theme">Post Job</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

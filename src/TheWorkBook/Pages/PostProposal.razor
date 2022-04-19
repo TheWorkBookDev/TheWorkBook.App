@@ -1,0 +1,70 @@
+﻿@page "/postproposal"
+
+<div class="row bg-light mb-5">
+    <div class="col-2">
+        <a href="joblisting">
+            <i class="oi oi-chevron-left"></i>
+        </a>
+    </div>
+    <div class="col-10">
+        <h4>Post Proposal</h4>
+    </div>
+</div>
+
+<div class="m-2">
+
+    <div class="shadow-lg p-3 mb-4 bg-white rounded-3">
+
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Job Description
+                </label>
+                <span>
+                    <textarea class="form-control" placeholder="Enter your proposal here..." rows="5" />
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Quote
+                </label>
+                <span>
+                    <input class="form-control" type="number" placeholder="Amount" />
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>
+                    Per
+                </label>
+                <span>
+                    <select class="form-select">
+                        <option value="-1">Choose</option>
+                        <option>Hour</option>
+                        <option>Day</option>
+                        <option>Week</option>
+                        <option>Job</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+
+
+        <div class="row my-5">
+            <div class="col-12 text-center">
+                <button class="btn btn-outline-primary tr-theme" @onclick="Submit">Submit Proposal</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+

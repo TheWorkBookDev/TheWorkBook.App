@@ -1,7 +1,40 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@using TheWorkBook.Data
+@using TheWorkBook.Dto
+@inject CategoryService CategoryService
 
-Welcome to your new app.
+<h1>Choose Category</h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@if (categories == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+
+            @foreach (var categoryDto in categories)
+            {
+                <div class="col-6 tr-h-200 mt-4">
+                    <div class="category d-grid gap-2 ">
+                        <a class="btn btn-outline-primary tr-theme my-2 tr-h-200 " href="/joblisting/@categoryDto.CategoryId">
+                            @categoryDto.CategoryName
+                        </a>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private List<CategoryDto> categories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await CategoryService.GetCategoriesAsync();
+    }
+}
