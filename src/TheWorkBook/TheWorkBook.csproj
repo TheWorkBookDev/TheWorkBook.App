@@ -86,7 +86,7 @@
 		<PackageReference Include="IdentityModel.OidcClient" Version="5.0.0" />
 		<!--<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.1" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.2" />-->
-		<PackageReference Include="Radzen.Blazor" Version="3.18.2" />
+		<PackageReference Include="Radzen.Blazor" Version="3.18.3" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
 	</ItemGroup>
 
