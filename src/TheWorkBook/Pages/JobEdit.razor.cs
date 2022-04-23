@@ -4,7 +4,7 @@ using TheWorkBook.Dto;
 
 namespace TheWorkBook.Pages
 {
-    public partial class JobDetails : ComponentBase
+    public partial class JobEdit : ComponentBase
     {
         [Parameter]
         public int Id { get; set; }
@@ -19,7 +19,6 @@ namespace TheWorkBook.Pages
 
         [Inject]
         private NavigationManager _navigationManager { get; set; }
-
         protected async override Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
@@ -36,11 +35,6 @@ namespace TheWorkBook.Pages
         private void UpdateJobDetails()
         {
 
-        }
-
-        private void NavigateBackClick()
-        {
-            //_navigationManager.();
         }
     }
 }

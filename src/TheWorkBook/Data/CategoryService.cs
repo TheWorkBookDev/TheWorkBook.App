@@ -16,8 +16,15 @@ namespace TheWorkBook.Data
 
         public async Task<List<CategoryDto>> GetCategoriesAsync()
         {
-            List<CategoryDto> categories = await _httpClient.MakeGetRequest<List<CategoryDto>>($"/{_version}/category/getCategories");
-            return categories;
+            try
+            {
+                List<CategoryDto> categories = await _httpClient.MakeGetRequest<List<CategoryDto>>($"/{_version}/category/getCategories");
+                return categories;
+            }
+        catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<CategoryDto> GetCategoryAsync(int categoryId)

@@ -35,7 +35,7 @@ namespace TheWorkBook.Dto
         public byte StatusId { get; set; }
 
         [JsonPropertyName("title")]
-        public int Title { get; set; }
+        public string Title { get; set; }
 
         [JsonPropertyName("userId")]
         public int UserId { get; set; }

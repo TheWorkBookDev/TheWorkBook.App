@@ -1,6 +1,8 @@
 ﻿using System.Collections.Specialized;
 using TheWorkBook.Dto;
 using TheWorkBook.Extensions;
+using Microsoft.AspNetCore.JsonPatch;
+using Newtonsoft.Json.Linq;
 
 namespace TheWorkBook.Data
 {
@@ -22,16 +24,15 @@ namespace TheWorkBook.Data
             return user;
         }
 
-        //public async Task<CategoryDto> GetCategoryAsync(int categoryId)
-        //{
-        //    var parameters = new NameValueCollection
-        //                    {
-        //                        {"CategoryId", categoryId.ToString()}
-        //                    };
+        public async Task<string> UpdateMyInfo(UserDto userDto)
+        {
+            UserDto myInfo = await GetMyInfo();
+            JsonPatchDocument body = JsonPatchDocumentDiff.CalculatePatch(myInfo, userDto);
+            
+            string path = $"/{_version}/user/updateMyInfo";
 
-        //    string path = $"/{_version}/category/get".AttachParameters(parameters);
-        //    CategoryDto category = await _httpClient.MakeGetRequest<CategoryDto>(path);
-        //    return category;
-        //}
+            string result = await _httpClient.MakePatchRequest<string, JsonPatchDocument>(path, body);
+            return result;
+        }
     }
 }

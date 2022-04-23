@@ -7,22 +7,22 @@ namespace TheWorkBook.Pages
     public partial class UserProfile : ComponentBase
     {
         [Inject]
-        private UserService _userService { get; set; }        
-        
-        [Inject]
-        private NavigationManager _navigationManager { get; set; }
+        private UserService _userService { get; set; }              
 
         protected UserDto MyInfo;
 
-        private void Submit()
+        private async Task Submit()
         {
-            _navigationManager.NavigateTo("index");
+            // Save the user's details (post to the API!)
+            await _userService.UpdateMyInfo(MyInfo);
+
+            await GoBack.GoBackInTime();
         }
 
         protected async override Task OnInitializedAsync()
         {
-            MyInfo = await _userService.GetMyInfo();
             await base.OnInitializedAsync();
+            MyInfo = await _userService.GetMyInfo();
         }
     }
 }

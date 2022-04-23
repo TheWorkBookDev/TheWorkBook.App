@@ -2,7 +2,7 @@
 
 <div class="row bg-light mb-5">
     <div class="col-2">
-        <a href="joblisting">
+        <a onclick="goBack()">
             <i class="oi oi-chevron-left"></i>
         </a>
     </div>
@@ -13,7 +13,7 @@
 
 @if (MyInfo == null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>Loading... Contacting the Identity Service.</em></p>
 }
 else
 {
@@ -25,7 +25,7 @@ else
                     First Name
                 </label>
                 <span>
-                    <input class="form-control" type="text" placeholder="First Name" />
+                    <input class="form-control" type="text" placeholder="First Name" @bind-value="@MyInfo.FirstName" />
                 </span>
             </div>
         </div>
@@ -36,7 +36,7 @@ else
                     Last Name
                 </label>
                 <span>
-                    <input class="form-control" type="text" placeholder="Last Name" />
+                    <input class="form-control" type="text" placeholder="Last Name" @bind-value="@MyInfo.LastName" />
                 </span>
             </div>
         </div>
@@ -47,7 +47,7 @@ else
                     Email
                 </label>
                 <span>
-                    <input class="form-control" type="text" placeholder="First Name" />
+                    <input class="form-control" type="text" placeholder="Email" @bind-value="@MyInfo.Email"  />
                 </span>
             </div>
         </div>
@@ -58,7 +58,7 @@ else
                     Mobile
                 </label>
                 <span>
-                    <input class="form-control" type="text" placeholder="Mobile" />
+                    <input class="form-control" type="text" placeholder="Mobile" @bind-value="@MyInfo.Mobile"  />
                 </span>
             </div>
         </div>
