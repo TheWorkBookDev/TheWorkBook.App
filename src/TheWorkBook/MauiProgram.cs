@@ -1,8 +1,7 @@
-﻿using System.Reflection;
-using IdentityModel.OidcClient;
-using Microsoft.AspNetCore.Components.WebView.Maui;
+﻿using IdentityModel.OidcClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
+using System.Reflection;
 using TheWorkBook.Data;
 
 namespace TheWorkBook;
@@ -29,15 +28,17 @@ public static class MauiProgram
             });
 
         builder.Services.AddMauiBlazorWebView();
-
-        builder.Services.AddSingleton<WeatherForecastService>();
+        
         builder.Services.AddSingleton<CategoryService>();
+        builder.Services.AddSingleton<ListingService>();
         builder.Services.AddSingleton<LocationService>();
         builder.Services.AddSingleton<SearchService>();
         builder.Services.AddSingleton<UserService>();
 
         builder.Services.AddTransient<WebAuthenticatorBrowser>();
         builder.Services.AddTransient<MainPage>();
+
+        builder.Services.AddTransient<GoBack>();
 
         List<string> loopbackAddresses = new()
         {
