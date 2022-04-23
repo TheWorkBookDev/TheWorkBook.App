@@ -25,13 +25,9 @@ namespace TheWorkBook.Data
         }
 
         public async Task<string> UpdateMyInfo(UserDto userDto)
-        {
-            UserDto myInfo = await GetMyInfo();
-            JsonPatchDocument body = JsonPatchDocumentDiff.CalculatePatch(myInfo, userDto);
-            
+        {           
             string path = $"/{_version}/user/updateMyInfo";
-
-            string result = await _httpClient.MakePatchRequest<string, JsonPatchDocument>(path, body);
+            string result = await _httpClient.MakePostRequest<string, UserDto>(path, userDto);
             return result;
         }
     }

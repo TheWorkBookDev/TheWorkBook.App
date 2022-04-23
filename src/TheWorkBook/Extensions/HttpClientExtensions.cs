@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 
 namespace TheWorkBook.Extensions
@@ -51,6 +52,41 @@ namespace TheWorkBook.Extensions
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public static async Task<T> MakePostRequest<T, U>(this HttpClient httpClient, string requestString, U postData)
+        {
+            Uri requestUri = new(Combine(httpClient.BaseAddress.ToString(), requestString));
+            return await MakePostRequest<T, U>(httpClient, requestUri, postData);
+        }
+
+        public static async Task<T> MakePostRequest<T, U>(this HttpClient httpClient, Uri requestUri, U postData)
+        {
+            try
+            {
+                using var httpResponse = await httpClient.PostAsJsonAsync(requestUri, postData);
+                httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
+                string response = await httpResponse.Content.ReadAsStringAsync();
+                if (string.IsNullOrEmpty(response))
+                {
+                    return default;
+                }
+                return JsonSerializer.Deserialize<T>(response);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task<T> MakePutRequest<T, U>(this HttpClient httpClient, Uri requestUri, U postData)
+        {
+            using (var httpResponse = await httpClient.PutAsJsonAsync(requestUri, postData))
+            {
+                httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
+                string response = await httpResponse.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<T>(response);
             }
         }
 

@@ -12,7 +12,7 @@ namespace TheWorkBook.Pages
         //[Parameter]
         public string Text { get; set; }
 
-        public ListingDto ListingDto { get; set; }
+        public ListingDto ListingDto { get; set; } = new ListingDto();
 
         [Inject]
         private ListingService _listingService { get; set; }
@@ -22,10 +22,10 @@ namespace TheWorkBook.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
-
             // Fetching the listing from the API
             ListingDto = await _listingService.GetListing(Id);
+            
+            await base.OnInitializedAsync();            
         }
 
         private void GoToSubmitProposal()
@@ -36,11 +36,6 @@ namespace TheWorkBook.Pages
         private void UpdateJobDetails()
         {
 
-        }
-
-        private void NavigateBackClick()
-        {
-            //_navigationManager.();
         }
     }
 }

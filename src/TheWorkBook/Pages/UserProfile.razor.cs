@@ -15,7 +15,6 @@ namespace TheWorkBook.Pages
         {
             // Save the user's details (post to the API!)
             await _userService.UpdateMyInfo(MyInfo);
-
             await GoBack.GoBackInTime();
         }
 

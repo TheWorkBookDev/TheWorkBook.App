@@ -15,60 +15,102 @@
 <div class="m-2">
 
     <div class="shadow-lg p-3 mb-5 bg-white rounded-3">
-
         <div class="row mb-4">
             <div class="col-12">
-                <label>Job Title</label>
-
-                <input class="form-control" placeholder="Enter job title..." />
+                <label>Category</label>
+                <span>
+                    <select class="form-select" @bind="viewModel.CategoryId">
+                        <option value="-1">Choose</option>
+                        @if (viewModel?.Categories != null)
+                        {
+                            @foreach (var category in viewModel.Categories)
+                            {
+                                <option value="@category.CategoryId">@category.CategoryName</option>
+                            }
+                        }
+                    </select>
+                </span>
             </div>
+
         </div>
 
         <div class="row mb-4">
             <div class="col-12">
-                <label>Hours Needed</label>
+                <label>Location</label>
                 <span>
-                    <select class="form-select">
-                        <option svalue="0">Less than 40 Hours/Week</option>
-                        <option value="1">Less than 30 Hours/Week</option>
-                        <option value="2">Less than 20 Hours/Week</option>
-                        <option value="3">Less than 10 Hours/Week</option>
+                    <select class="form-select" @bind="viewModel.LocationId">
+                        <option value="-1">Choose</option>
+                        @if (viewModel?.Locations != null)
+                        {
+                            @foreach (var location in viewModel.Locations)
+                            {
+                                <option value="@location.LocationId">@location.LocationName</option>
+                            }
+                        }
                     </select>
                 </span>
             </div>
         </div>
 
         <div class="row mb-4">
-
             <div class="col-12">
-                <label>
-                    Duration
-                </label>
-                <span>
-                    <select class="form-select">
-                        <option value="1">Less than 1 Month</option>
-                        <option value="2">1 to 3 Month</option>
-                        <option value="3">3 to 6 Month</option>
-                        <option value="4">More than 6 Month</option>
-                    </select>
-                </span>
+                <label>Brief Title</label>
+                <input class="form-control" placeholder="Enter job title..." @bind-value="@viewModel.Title" />
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-12">
-                <label>
-                    Experience Level
-                </label>
-                <span>
-                    <select class="form-select">
-                        <option value="1">Beginner</option>
-                        <option value="2">Intermediate</option>
-                        <option value="3">Expert</option>
-                    </select>
-                </span>
+                <label>Main Description</label>
+                <input class="form-control" placeholder="Enter description of the service of work required..." @bind-value="@viewModel.Description" />
             </div>
         </div>
+
+        @* <div class="row mb-4">
+        <div class="col-12">
+        <label>Hours Needed</label>
+        <span>
+        <select class="form-select">
+        <option svalue="0">Less than 40 Hours/Week</option>
+        <option value="1">Less than 30 Hours/Week</option>
+        <option value="2">Less than 20 Hours/Week</option>
+        <option value="3">Less than 10 Hours/Week</option>
+        </select>
+        </span>
+        </div>
+        </div>
+
+        <div class="row mb-4">
+
+        <div class="col-12">
+        <label>
+        Duration
+        </label>
+        <span>
+        <select class="form-select">
+        <option value="1">Less than 1 Month</option>
+        <option value="2">1 to 3 Month</option>
+        <option value="3">3 to 6 Month</option>
+        <option value="4">More than 6 Month</option>
+        </select>
+        </span>
+        </div>
+        </div>*@
+
+        @*<div class="row mb-4">
+        <div class="col-12">
+        <label>
+        Experience Level
+        </label>
+        <span>
+        <select class="form-select">
+        <option value="1">Beginner</option>
+        <option value="2">Intermediate</option>
+        <option value="3">Expert</option>
+        </select>
+        </span>
+        </div>
+        </div>*@
 
         <div class="row mb-4">
             <div class="col-12">
@@ -76,7 +118,7 @@
                     Budget
                 </label>
                 <span>
-                    <input class="form-control" type="number" placeholder="Budget" min="1" max="999" />
+                    <input class="form-control" type="number" placeholder="Budget" min="1" max="999" @bind-value="@viewModel.Budget" />
                 </span>
             </div>
         </div>
@@ -97,22 +139,22 @@
                 </span>
             </div>
         </div>
-
+        @*
         <div class="row mb-4">
-            <div class="col-12">
-                <label>
-                    Job Description
-                </label>
-                <span>
-                    <textarea class="form-control" placeholder="Enter job description here..." rows="5" />
-                </span>
-            </div>
+        <div class="col-12">
+        <label>
+        Job Description
+        </label>
+        <span>
+        <textarea class="form-control" placeholder="Enter job description here..." rows="5" />
+        </span>
         </div>
+        </div>*@
 
 
         <div class="row my-5">
             <div class="col-12 text-center">
-                <button class="btn btn-outline-primary tr-theme">Post Job</button>
+                <button class="btn btn-outline-primary tr-theme" @onclick="PostJobClicked">Post Job</button>
             </div>
         </div>
 

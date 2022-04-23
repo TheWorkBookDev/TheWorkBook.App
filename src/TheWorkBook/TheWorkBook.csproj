@@ -30,10 +30,16 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\Images\appicon.svg" ForegroundFile="Resources\Images\appicon.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiIcon>
+
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#0c0c0d" BaseSize="128,128" />
+
+		<MauiSplashScreen Include="Resources\Images\splashscreen.svg" Color="#ffffff" ForegroundFile="Resources\Images\splashscreen.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</MauiSplashScreen>
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -44,6 +50,15 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\appicon.svg" />
+	  <MauiImage Remove="Resources\Images\splashscreen.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\splashscreen.svg" />
 	</ItemGroup>
 
 	<!--<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
@@ -84,6 +99,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="IdentityModel.OidcClient" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.4" />
 		<!--<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.1" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.2" />-->
 		<PackageReference Include="Radzen.Blazor" Version="3.18.2" />

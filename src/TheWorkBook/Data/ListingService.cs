@@ -14,6 +14,13 @@ namespace TheWorkBook.Data
             _httpClient = httpClient;
         }
 
+        public async Task<string> CreateListing(NewListingDto newListingDto)
+        {
+            string path = $"/{_version}/listing/add";
+            string result = await _httpClient.MakePostRequest<string, NewListingDto>(path, newListingDto);
+            return result;
+        }
+
         public async Task<ListingDto> GetListing(int listingId)
         {
             var parameters = new NameValueCollection
