@@ -30,9 +30,10 @@ namespace TheWorkBook
                 if (!string.IsNullOrWhiteSpace(refreshToken))
                 {
                     var refreshResult = await OidcClient.RefreshTokenAsync(refreshToken);
-
+                    
                     await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, refreshResult.AccessToken);
                     await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, refreshResult.RefreshToken);
+                    await SecureStorage.SetAsync(OidcConsts.IdentityTokenKeyName, refreshResult.IdentityToken);
 
                     request.SetBearerToken(refreshResult.AccessToken);
 
@@ -42,11 +43,10 @@ namespace TheWorkBook
                 {
                     var result = await OidcClient.LoginAsync(new LoginRequest());
                     request.SetBearerToken(result.AccessToken);
-
+                    
                     await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, result.AccessToken);
                     await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, result.RefreshToken);
-
-                    request.SetBearerToken(result.AccessToken);
+                    await SecureStorage.SetAsync(OidcConsts.IdentityTokenKeyName, result.IdentityToken);
 
                     return await base.SendAsync(request, cancellationToken);
                 }

@@ -68,7 +68,8 @@ public static class MauiProgram
 				Authority = "https://auth.theworkbook.ie",
 				ClientId = "native",
 				RedirectUri = "theworkbook://authorize",
-				Scope = "openid profile api offline_access",
+                PostLogoutRedirectUri = "theworkbook://logout",
+                Scope = "openid profile api offline_access",
 				Browser = sp.GetRequiredService<WebAuthenticatorBrowser>(),
 
 				// When locally debugging
