@@ -21,7 +21,7 @@ namespace TheWorkBook.Data
                 List<CategoryDto> categories = await _httpClient.MakeGetRequest<List<CategoryDto>>($"/{_version}/category/getCategories");
                 return categories;
             }
-        catch (Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
