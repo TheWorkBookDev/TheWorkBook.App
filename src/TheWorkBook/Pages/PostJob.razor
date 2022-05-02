@@ -62,7 +62,9 @@
         <div class="row mb-4">
             <div class="col-12">
                 <label>Main Description</label>
-                <input class="form-control" placeholder="Enter description of the service of work required..." @bind-value="@viewModel.Description" />
+                <textarea class="form-control" rows="5" @bind="@viewModel.Description" @bind:event="oninput"
+                    placeholder="Enter description of the service of work required...">                
+                </textarea>
             </div>
         </div>
 
@@ -71,7 +73,7 @@
         <label>Hours Needed</label>
         <span>
         <select class="form-select">
-        <option svalue="0">Less than 40 Hours/Week</option>
+        <option svalue="0">Less than 40 Hours/Week</option>aind
         <option value="1">Less than 30 Hours/Week</option>
         <option value="2">Less than 20 Hours/Week</option>
         <option value="3">Less than 10 Hours/Week</option>
@@ -115,19 +117,10 @@
         <div class="row mb-4">
             <div class="col-12">
                 <label>
-                    Budget
+                    Budget Amount €
                 </label>
                 <div class="col-6">
                     <input class="form-control" type="number" placeholder="Budget" min="1" max="9999" @bind-value="@viewModel.Budget" />
-                </div>
-                <div class="col-12">
-                    <select class="form-select">
-                        <option value="-1">Choose</option>
-                        <option>Hour</option>
-                        <option>Day</option>
-                        <option>Week</option>
-                        <option>Job</option>
-                    </select>
                 </div>
             </div>
         </div>

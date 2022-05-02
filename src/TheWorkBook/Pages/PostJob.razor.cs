@@ -11,23 +11,30 @@ namespace TheWorkBook.Pages
         public int CategoryId { get; set; }
 
         [Inject]
-        private CategoryService _categoryService { get; set; }
+        private CategoryService CategoryService { get; set; }
 
         [Inject]
-        private LocationService _locationService { get; set; }
+        private LocationService LocationService { get; set; }
 
         [Inject]
-        private ListingService _listingService { get; set; }
+        private ListingService ListingService { get; set; }
 
         [Inject]
-        private NavigationManager _navigationManager { get; set; }
+        private UserService UserService { get; set; }
+
+        [Inject]
+        private NavigationManager NavigationManager { get; set; }
 
         protected PostJobViewModel viewModel = new PostJobViewModel();
 
         protected async override Task OnInitializedAsync()
         {
-            viewModel.Categories = await _categoryService.GetCategoriesAsync();
-            viewModel.Locations = await _locationService.GetCounties();
+            // We call GetMyInfo to ensure the user is authenticated
+            // and initiate the login flow if they are not.
+            _ = await UserService.GetMyInfo();
+
+            viewModel.Categories = await CategoryService.GetCategoriesAsync();
+            viewModel.Locations = await LocationService.GetCounties();
 
             await base.OnInitializedAsync();
         }
@@ -42,14 +49,14 @@ namespace TheWorkBook.Pages
                 Title = viewModel.Title
             };
 
-            await _listingService.CreateListing(newListingDto);
+            await ListingService.CreateListing(newListingDto);
 
-            _navigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/");
         }
 
         private void GoToSubmitProposal()
         {
-            _navigationManager.NavigateTo("postproposal");
+            NavigationManager.NavigateTo("postproposal");
         }
 
         private void UpdateJobDetails()
