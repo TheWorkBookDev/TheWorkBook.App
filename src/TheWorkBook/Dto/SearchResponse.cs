@@ -1,10 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TheWorkBook.Dto
+namespace TheWorkBook.Dto;
+
+public class SearchResponse
 {
-    public class SearchResponse
-    {
-        [JsonPropertyName("listings")]
-        public List<ListingDto> Listings { get; set; }
-    }
+    [JsonPropertyName("listings")]
+    public List<ListingDto> Listings { get; set; }
 }
+

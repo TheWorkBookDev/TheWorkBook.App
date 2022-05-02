@@ -2,41 +2,40 @@
 using TheWorkBook.Dto;
 using TheWorkBook.Extensions;
 
-namespace TheWorkBook.Data
+namespace TheWorkBook.Data;
+
+public class CategoryService
 {
-    public class CategoryService
+    private const string _version = "v1";
+    readonly HttpClient _httpClient;
+
+    public CategoryService(HttpClient httpClient)
     {
-        private const string _version = "v1";
-        readonly HttpClient _httpClient;
+        _httpClient = httpClient;
+    }
 
-        public CategoryService(HttpClient httpClient)
+    public async Task<List<CategoryDto>> GetCategoriesAsync()
+    {
+        try
         {
-            _httpClient = httpClient;
+            List<CategoryDto> categories = await _httpClient.MakeGetRequest<List<CategoryDto>>($"/{_version}/category/getCategories");
+            return categories;
         }
-
-        public async Task<List<CategoryDto>> GetCategoriesAsync()
+        catch (Exception ex)
         {
-            try
-            {
-                List<CategoryDto> categories = await _httpClient.MakeGetRequest<List<CategoryDto>>($"/{_version}/category/getCategories");
-                return categories;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            throw ex;
         }
+    }
 
-        public async Task<CategoryDto> GetCategoryAsync(int categoryId)
-        {
-            var parameters = new NameValueCollection
+    public async Task<CategoryDto> GetCategoryAsync(int categoryId)
+    {
+        var parameters = new NameValueCollection
                             {
                                 {"CategoryId", categoryId.ToString()}
                             };
 
-            string path = $"/{_version}/category/get".AttachParameters(parameters);
-            CategoryDto category = await _httpClient.MakeGetRequest<CategoryDto>(path);
-            return category;
-        }
+        string path = $"/{_version}/category/get".AttachParameters(parameters);
+        CategoryDto category = await _httpClient.MakeGetRequest<CategoryDto>(path);
+        return category;
     }
 }

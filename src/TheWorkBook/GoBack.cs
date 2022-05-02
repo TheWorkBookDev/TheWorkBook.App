@@ -1,28 +1,22 @@
 ﻿using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TheWorkBook
+namespace TheWorkBook;
+
+public class GoBack
 {
-    public class GoBack
+    private static IJSRuntime JSRuntime { get; set; }
+
+    public GoBack(IJSRuntime jSRuntime)
     {
-        private static IJSRuntime JSRuntime { get; set; }
+        GoBack.JSRuntime = jSRuntime;
+    }
 
-        public GoBack(IJSRuntime jSRuntime)
+    public static async Task GoBackInTime()
+    {
+        if (GoBack.JSRuntime != null)
         {
-            GoBack.JSRuntime = jSRuntime;
-        }
-
-        public static async Task GoBackInTime()
-        {
-            //Microsoft.Maui.Platform;
-            if (GoBack.JSRuntime != null)
-            {
-                await GoBack.JSRuntime.InvokeVoidAsync("goBack");
-            }
+            await GoBack.JSRuntime.InvokeVoidAsync("goBack");
         }
     }
 }
+

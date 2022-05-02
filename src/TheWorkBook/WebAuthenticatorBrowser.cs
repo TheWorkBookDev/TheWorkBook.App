@@ -1,5 +1,6 @@
 ﻿using IdentityModel.OidcClient.Browser;
 using System.Diagnostics;
+
 namespace TheWorkBook;
 
 internal class WebAuthenticatorBrowser : IdentityModel.OidcClient.Browser.IBrowser

@@ -1,58 +1,57 @@
 ﻿using IdentityModel.Client;
 using IdentityModel.OidcClient;
 
-namespace TheWorkBook
+namespace TheWorkBook;
+
+public class AccessTokenHttpMessageHandler : DelegatingHandler
 {
-    public class AccessTokenHttpMessageHandler : DelegatingHandler
+    protected OidcClient OidcClient { get; }
+
+    public AccessTokenHttpMessageHandler(OidcClient oidcClient) : base(new HttpClientHandler())
     {
-        protected OidcClient OidcClient { get; }
+        OidcClient = oidcClient;
+    }
 
-        public AccessTokenHttpMessageHandler(OidcClient oidcClient) : base(new HttpClientHandler())
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        string accessToken = await SecureStorage.GetAsync(OidcConsts.AccessTokenKeyName);
+
+        if (!string.IsNullOrWhiteSpace(accessToken))
         {
-            OidcClient = oidcClient;
+            request.SetBearerToken(accessToken);
+            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        var response = await base.SendAsync(request, cancellationToken);
+
+        if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
         {
-            string accessToken = await SecureStorage.GetAsync(OidcConsts.AccessTokenKeyName);
-
-            if (!string.IsNullOrWhiteSpace(accessToken))
+            string refreshToken = await SecureStorage.GetAsync(OidcConsts.RefreshTokenKeyName);
+            if (!string.IsNullOrWhiteSpace(refreshToken))
             {
-                request.SetBearerToken(accessToken);
-                request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var refreshResult = await OidcClient.RefreshTokenAsync(refreshToken);
+
+                await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, refreshResult.AccessToken);
+                await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, refreshResult.RefreshToken);
+                await SecureStorage.SetAsync(OidcConsts.IdentityTokenKeyName, refreshResult.IdentityToken);
+
+                request.SetBearerToken(refreshResult.AccessToken);
+
+                return await base.SendAsync(request, cancellationToken);
             }
-
-            var response = await base.SendAsync(request, cancellationToken);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            else
             {
-                string refreshToken = await SecureStorage.GetAsync(OidcConsts.RefreshTokenKeyName);
-                if (!string.IsNullOrWhiteSpace(refreshToken))
-                {
-                    var refreshResult = await OidcClient.RefreshTokenAsync(refreshToken);
-                    
-                    await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, refreshResult.AccessToken);
-                    await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, refreshResult.RefreshToken);
-                    await SecureStorage.SetAsync(OidcConsts.IdentityTokenKeyName, refreshResult.IdentityToken);
+                var result = await OidcClient.LoginAsync(new LoginRequest());
+                request.SetBearerToken(result.AccessToken);
 
-                    request.SetBearerToken(refreshResult.AccessToken);
+                await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, result.AccessToken);
+                await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, result.RefreshToken);
+                await SecureStorage.SetAsync(OidcConsts.IdentityTokenKeyName, result.IdentityToken);
 
-                    return await base.SendAsync(request, cancellationToken);
-                }
-                else
-                {
-                    var result = await OidcClient.LoginAsync(new LoginRequest());
-                    request.SetBearerToken(result.AccessToken);
-                    
-                    await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, result.AccessToken);
-                    await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, result.RefreshToken);
-                    await SecureStorage.SetAsync(OidcConsts.IdentityTokenKeyName, result.IdentityToken);
-
-                    return await base.SendAsync(request, cancellationToken);
-                }
+                return await base.SendAsync(request, cancellationToken);
             }
-
-            return response;
         }
+
+        return response;
     }
 }
