@@ -31,14 +31,12 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\Images\appicon.svg" ForegroundFile="Resources\Images\appicon.svg">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiIcon>
 
-
 		<!-- Splash Screen -->
-
 		<MauiSplashScreen Include="Resources\Images\splashscreen.svg" Color="#ffffff" ForegroundFile="Resources\Images\splashscreen.svg">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</MauiSplashScreen>
 
 		<!-- Images -->
@@ -53,45 +51,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\appicon.svg" />
-	  <MauiImage Remove="Resources\Images\splashscreen.svg" />
+		<MauiImage Remove="Resources\Images\appicon.svg" />
+		<MauiImage Remove="Resources\Images\splashscreen.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\splashscreen.svg" />
+		<None Remove="Resources\Images\splashscreen.svg" />
 	</ItemGroup>
-
-	<!--<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-		--><!-- Required - WinUI does not yet have buildTransitive for everything --><!--
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
-		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.0.30" />
-	</ItemGroup>-->
-
-	<!--<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
-		<OutputType>WinExe</OutputType>
-		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-android|AnyCPU'">
-	  <Optimize>False</Optimize>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
-	  <Optimize>False</Optimize>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-maccatalyst|AnyCPU'">
-	  <Optimize>False</Optimize>
-	</PropertyGroup>-->
-
-	<!--<ItemGroup>
-	  <AndroidResource Remove="Platforms\MacCatalyst\**" />
-	  <Compile Remove="Platforms\MacCatalyst\**" />
-	  <Content Remove="Platforms\MacCatalyst\**" />
-	  <EmbeddedResource Remove="Platforms\MacCatalyst\**" />
-	  <MauiXaml Remove="Platforms\MacCatalyst\**" />
-	  <None Remove="Platforms\MacCatalyst\**" />
-	</ItemGroup>-->
 
 	<ItemGroup>
 		<EmbeddedResource Include="appsettings.json" />
@@ -100,8 +66,6 @@
 	<ItemGroup>
 		<PackageReference Include="IdentityModel.OidcClient" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.4" />
-		<!--<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.1" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.2" />-->
 		<PackageReference Include="Radzen.Blazor" Version="3.18.2" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
 	</ItemGroup>
