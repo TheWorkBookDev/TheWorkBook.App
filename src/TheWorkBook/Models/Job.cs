@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TheWorkBook.Models;
 
-namespace TheWorkBook.Models
+public class Job
 {
-    public class Job
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public string Title { get; set; }
-    }
+    public string Title { get; set; }
 }

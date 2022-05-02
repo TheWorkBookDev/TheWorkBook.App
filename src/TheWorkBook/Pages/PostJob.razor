@@ -8,7 +8,7 @@
         </a>
     </div>
     <div class="col-10">
-        <h4>Job Post</h4>
+        <h4>Create new listing</h4>
     </div>
 </div>
 
@@ -54,8 +54,8 @@
 
         <div class="row mb-4">
             <div class="col-12">
-                <label>Brief Title</label>
-                <input class="form-control" placeholder="Enter job title..." @bind-value="@viewModel.Title" />
+                <label>Title</label>
+                <input class="form-control" placeholder="Enter title..." @bind-value="@viewModel.Title" />
             </div>
         </div>
 
@@ -117,9 +117,18 @@
                 <label>
                     Budget
                 </label>
-                <span>
-                    <input class="form-control" type="number" placeholder="Budget" min="1" max="999" @bind-value="@viewModel.Budget" />
-                </span>
+                <div class="col-6">
+                    <input class="form-control" type="number" placeholder="Budget" min="1" max="9999" @bind-value="@viewModel.Budget" />
+                </div>
+                <div class="col-12">
+                    <select class="form-select">
+                        <option value="-1">Choose</option>
+                        <option>Hour</option>
+                        <option>Day</option>
+                        <option>Week</option>
+                        <option>Job</option>
+                    </select>
+                </div>
             </div>
         </div>
 
