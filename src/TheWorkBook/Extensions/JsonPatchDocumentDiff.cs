@@ -121,7 +121,7 @@ public static class JsonPatchDocumentDiff
     private static Operation Replace(string path, string key, JToken value)
         => CreateOperationFrom("replace", path, key, value);
 
-    private class KeyComparer : IEqualityComparer<KeyValuePair<string, JToken>>
+    private sealed class KeyComparer : IEqualityComparer<KeyValuePair<string, JToken>>
     {
         public static readonly KeyComparer Instance = new KeyComparer();
 
