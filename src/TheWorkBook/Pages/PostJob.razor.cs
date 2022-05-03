@@ -43,24 +43,19 @@ public partial class PostJob : ComponentBase
     {
         var newListingDto = new NewListingDto()
         {
+            Budget = viewModel.Budget,
             CategoryId = viewModel.CategoryId,
-            MainDescription = viewModel.Description,
             LocationId = viewModel.LocationId,
+            MainDescription = viewModel.Description,
             Title = viewModel.Title
         };
 
         await ListingService.CreateListing(newListingDto);
 
-        NavigationManager.NavigateTo("/");
-    }
+        string navigateTo = "/postjobsuccess";
+        if (CategoryId > 0)
+            navigateTo += "/" + CategoryId;
 
-    private void GoToSubmitProposal()
-    {
-        NavigationManager.NavigateTo("postproposal");
-    }
-
-    private void UpdateJobDetails()
-    {
-
+        NavigationManager.NavigateTo(navigateTo);
     }
 }

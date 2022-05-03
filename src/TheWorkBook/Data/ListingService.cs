@@ -14,10 +14,10 @@ public class ListingService
         _httpClient = httpClient;
     }
 
-    public async Task<string> CreateListing(NewListingDto newListingDto)
+    public async Task<ListingDto> CreateListing(NewListingDto newListingDto)
     {
         string path = $"/{_version}/listing/add";
-        string result = await _httpClient.MakePostRequest<string, NewListingDto>(path, newListingDto);
+        ListingDto result = await _httpClient.MakePostRequest<ListingDto, NewListingDto>(path, newListingDto);
         return result;
     }
 

@@ -43,7 +43,6 @@
 
     @if (_isFilterVisible)
     {
-
         <div class="bg-light p-2 mr-3 border border-primary position-absolute tr-open-drawer">
 
             <hr />
@@ -95,41 +94,66 @@
                 <div class="shadow-lg p-3 mb-4 bg-white rounded-3">
                     <div class="mb-4">
                         <h4 class="d-inline">@listing.Title</h4>
-
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <label>
-                                <b>Hours needed:</b>
-
-                            </label>
-                            <span>
-                                30hrs/Week
-                            </span>
+                            <div>
+                                <label class="">
+                                    <b>
+                                        Where:
+                                    </b>
+                                </label>
+                                <div>
+                                    @listing.LocationName
+                                </div>
+                            </div>
                         </div>
                         <div class="col-6 ">
                             <div class="float-end">
                                 <label class="">
                                     <b>
-                                        Duration:
+                                        Posted:
                                     </b>
                                 </label>
                                 <div>
-                                    Less than 1 month
+                                    @listing.AdvertAge
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <label>
-                                <b>
-                                    Experience Level:
-                                </b>
-                            </label>
-                            <span>
-                                Expert
-                            </span>
-                        </div>
                     </div>
+                    @* <div class="row">
+            <div class="col-6">
+            <label>
+            <b>Hours needed:</b>
+
+            </label>
+            <span>
+            30hrs/Week
+            </span>
+            </div>
+            <div class="col-6 ">
+            <div class="float-end">
+            <label class="">
+            <b>
+            Duration:
+            </b>
+            </label>
+            <div>
+            Less than 1 month
+            </div>
+            </div>
+            </div>
+            <div class="col-6">
+            <label>
+            <b>
+            Experience Level:
+            </b>
+            </label>
+            <span>
+            Expert
+            </span>
+            </div>
+            </div>*@
 
                     <p class="mt-4">
                         @listing.MainDescription
@@ -141,7 +165,7 @@
                                 Budget:
                             </label>
                             <span>
-                                @listing.Budget
+                                €@listing.BudgetText
                             </span>
                         </div>
                         <div class="col-6">

@@ -7,7 +7,7 @@
             <i class="oi oi-chevron-left"></i>
         </a>
     </div>
-    <div class="col-10">
+    <div class="col-10">udget
         <h4>Create new listing</h4>
     </div>
 </div>
@@ -54,14 +54,14 @@
 
         <div class="row mb-4">
             <div class="col-12">
-                <label>Title</label>
+                <label>Brief title</label>
                 <input class="form-control" placeholder="Enter title..." @bind-value="@viewModel.Title" />
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-12">
-                <label>Main Description</label>
+                <label>Describe the job/need</label>
                 <textarea class="form-control" rows="5" @bind="@viewModel.Description" @bind:event="oninput"
                     placeholder="Enter description of the service of work required...">                
                 </textarea>
@@ -125,7 +125,7 @@
             </div>
         </div>
 
-        <div class="row mb-4">
+        @*<div class="row mb-4">
             <div class="col-12">
                 <label>
                     Per
@@ -140,7 +140,7 @@
                     </select>
                 </span>
             </div>
-        </div>
+        </div>*@
         @*
         <div class="row mb-4">
         <div class="col-12">

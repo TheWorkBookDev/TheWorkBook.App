@@ -1,7 +1,7 @@
-﻿using IdentityModel.OidcClient;
+﻿using System.Reflection;
+using IdentityModel.OidcClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
-using System.Reflection;
 using TheWorkBook.Data;
 
 namespace TheWorkBook;

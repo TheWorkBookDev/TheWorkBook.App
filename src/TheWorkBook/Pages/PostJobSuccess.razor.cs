@@ -5,7 +5,7 @@ using TheWorkBook.ViewModels;
 
 namespace TheWorkBook.Pages;
 
-public partial class PostJobBegin : ComponentBase
+public partial class PostJobSuccess : ComponentBase
 {
     [Parameter]
     public int CategoryId { get; set; }
@@ -19,16 +19,6 @@ public partial class PostJobBegin : ComponentBase
 
     protected async override Task OnInitializedAsync()
     {
-        // We call GetMyInfo to ensure the user is authenticated
-        // and initiate the login flow if they are not.
-        _ = await UserService.GetMyInfo();
-
-        string navigateTo = "/postjob";
-        if (CategoryId > 0)
-            navigateTo += "/" + CategoryId;
-
-        NavigationManager.NavigateTo(navigateTo);
-
         await base.OnInitializedAsync();
     }
 }
