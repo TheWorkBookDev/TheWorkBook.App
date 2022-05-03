@@ -21,6 +21,20 @@ public class UserService
         return user;
     }
 
+    public async Task<UserDto> GetMyInfoAuthCheck()
+    {
+        try
+        {
+            UserDto user = await _httpClient.MakeGetRequest<UserDto>($"/{_version}/user/getMyInfo?authcheck=yes");
+            return user;
+        }
+        catch
+        {
+            // fail expected when not authenticated.
+            return new UserDto();
+        }
+    }
+
     public async Task<string> UpdateMyInfo(UserDto userDto)
     {
         string path = $"/{_version}/user/updateMyInfo";

@@ -26,6 +26,13 @@ public class AccessTokenHttpMessageHandler : DelegatingHandler
 
         if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
         {
+            // If we were just checking if the user was authenticated, then we don't want to start an auth flow.
+            if (request.RequestUri.ToString().Contains("authcheck"))
+            {
+                // allow the Unauthorized response to return.
+                return response;
+            }
+
             string refreshToken = await SecureStorage.GetAsync(OidcConsts.RefreshTokenKeyName);
             if (!string.IsNullOrWhiteSpace(refreshToken))
             {
