@@ -23,8 +23,7 @@ public partial class JobListing : ComponentBase
 
     private bool _isFilterVisible;
 
-    IEnumerable<int> multipleValues = new int[] { 1, 2 };
-
+    IEnumerable<int> selectedLocations = null;
 
     private void ToogleFilterDrawer()
     {
@@ -41,8 +40,12 @@ public partial class JobListing : ComponentBase
     {
         _jobListingViewModel.SearchResponse = new SearchResponse();
 
+        List<int> locations = new List<int>();
+        if (selectedLocations != null)
+            locations = selectedLocations.ToList();
+
         List<int> categories = new List<int>() { CategoryId };
-        _jobListingViewModel.SearchResponse = await _searchService.SearchListingsAsync(categories, null);
+        _jobListingViewModel.SearchResponse = await _searchService.SearchListingsAsync(categories, locations);
     }
 
     protected async override Task OnInitializedAsync()
