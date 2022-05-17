@@ -97,18 +97,17 @@
             </div>
         </div>
 
-        
-
-
-        @*@if (Text == "edit")
+        @if (IsUsersListing())
         {
-        <div class="row my-5">
-        <div class="col-12 text-center">
-        <button class="btn btn-outline-primary" @onclick="UpdateJobDetails">Update Job</button>
-        </div>
-        </div>
+            <div class="row my-5">
+                <div class="col-12 text-center">
+                    @*<button class="btn btn-outline-primary" @onclick="UpdateJobDetails">Update Job</button>*@ 
+                    <a href="/EditJob/@Id">Edit Listing</a>
+                </div>
+            </div>
         }
-        else
+
+        @*
         {
         <div class="row my-5">
         <div class="col-12 text-center">
@@ -135,7 +134,7 @@
     </div>*@
 
 
-    @*chat bubble - start*@
+    @* chat bubble - start *@
     @*<div class="card bg-sohbet border-0 m-0 p-0" style="height: 100vh;">
     <div id="sohbet" class="card border-0 m-0 p-0 position-relative bg-transparent" style="overflow-y: auto; height: 100vh;">
 
@@ -147,11 +146,11 @@
 
     <div class="balon2 p-2 m-0 position-relative" data-is="Poster - 3:22 pm">
 
-    <a class="float-start sohbet2"> Checking out iPhone 12 you know.. </a>
+    <a class="float-start sohbet2"> Just enquiring about this listing.. </a>
 
     </div>
     </div>
     </div>*@
-    @*chat bubble - start*@
+    @* chat bubble - end *@
 </div>
 

@@ -1,5 +1,6 @@
 ﻿@page "/postjob"
 @page "/postjob/{CategoryId:int}"
+@page "/editjob/{ListingId:int}"
 
 <div class="row bg-light mb-5">
     <div class="col-2">
@@ -7,7 +8,7 @@
             <i class="oi oi-chevron-left"></i>
         </a>
     </div>
-    <div class="col-10">udget
+    <div class="col-10">
         <h4>Create new listing</h4>
     </div>
 </div>
@@ -19,7 +20,7 @@
             <div class="col-12">
                 <label>Category</label>
                 <span>
-                    <select class="form-select" @bind="viewModel.CategoryId">
+                    <select class="form-select" @bind="viewModel.EditListingDto.CategoryId">
                         <option value="-1">Choose</option>
                         @if (viewModel?.Categories != null)
                         {
@@ -38,7 +39,7 @@
             <div class="col-12">
                 <label>Location</label>
                 <span>
-                    <select class="form-select" @bind="viewModel.LocationId">
+                    <select class="form-select" @bind="viewModel.EditListingDto.LocationId">
                         <option value="-1">Choose</option>
                         @if (viewModel?.Locations != null)
                         {
@@ -55,19 +56,19 @@
         <div class="row mb-4">
             <div class="col-12">
                 <label>Brief title</label>
-                <input class="form-control" placeholder="Enter title..." @bind-value="@viewModel.Title" />
+                <input class="form-control" placeholder="Enter title..." @bind-value="@viewModel.EditListingDto.Title" />
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-12">
                 <label>Describe the job/need</label>
-                <textarea class="form-control" rows="5" @bind="@viewModel.Description" @bind:event="oninput"
+                <textarea class="form-control" rows="5" @bind="@viewModel.EditListingDto.MainDescription" @bind:event="oninput"
                     placeholder="Enter description of the service of work required...">                
                 </textarea>
             </div>
         </div>
-
+        
         @* <div class="row mb-4">
         <div class="col-12">
         <label>Hours Needed</label>
@@ -120,7 +121,7 @@
                     Budget Amount €
                 </label>
                 <div class="col-6">
-                    <input class="form-control" type="number" placeholder="Budget" min="1" max="9999" @bind-value="@viewModel.Budget" />
+                    <input class="form-control" type="number" placeholder="Budget" min="1" max="9999" @bind-value="@viewModel.EditListingDto.Budget" />
                 </div>
             </div>
         </div>
@@ -156,7 +157,7 @@
 
         <div class="row my-5">
             <div class="col-12 text-center">
-                <button class="btn btn-outline-primary tr-theme" @onclick="PostJobClicked">Post Job</button>
+                <button class="btn btn-outline-primary tr-theme" @onclick="PostJobClicked">@CallToActionText</button>
             </div>
         </div>
 
