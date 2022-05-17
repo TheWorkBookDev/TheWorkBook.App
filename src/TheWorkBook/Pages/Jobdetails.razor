@@ -20,18 +20,18 @@
         <div class="row mb-4">
             <div class="col-12">
                 <label><b>Job Title</b></label>
-                <div>@ListingDto.Title</div>
+                <div>@_listingDto.Title</div>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-6">
                 <label><b>Cateogry</b></label>
-                <div>@ListingDto.CategoryName</div>
+                <div>@_listingDto.CategoryName</div>
             </div>
             <div class="col-6">
                 <label><b>Location</b></label>
-                <div>@ListingDto.LocationName</div>
+                <div>@_listingDto.LocationName</div>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
                     <b>Job Description</b>
                 </label>
                 <div>
-                    @ListingDto.MainDescription
+                    @_listingDto.MainDescription
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
                     <b>Budget</b>
                 </label>
                 <div>
-                    <div>€@ListingDto.BudgetText</div>
+                    <div>€@_listingDto.BudgetText</div>
                 </div>
             </div>
             <div class="col-6">
@@ -92,7 +92,7 @@
                     <b>Posted</b>
                 </label>
                 <div>
-                    @ListingDto.AdvertAge
+                    @_listingDto.AdvertAge
                 </div>
             </div>
         </div>

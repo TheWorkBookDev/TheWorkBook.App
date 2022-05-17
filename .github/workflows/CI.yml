@@ -47,7 +47,7 @@ jobs:
         run: dotnet restore src/TheWorkBook/TheWorkBook.csproj
 
       - name: Build MAUI Android
-        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-android --no-restore
+        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-android
 
       - name: Upload Android Artifact
         uses: actions/upload-artifact@v3.0.0
@@ -113,7 +113,7 @@ jobs:
         run: dotnet restore src/TheWorkBook/TheWorkBook.csproj
 
       - name: Build MAUI iOS
-        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-ios --no-restore
+        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-ios
 
       - name: Upload iOS Artifact
         uses: actions/upload-artifact@v3.0.0

@@ -12,7 +12,7 @@ public partial class JobDetails : ComponentBase
     //[Parameter]
     public string Text { get; set; }
 
-    public ListingDto ListingDto { get; set; } = new ListingDto();
+    private ListingDto _listingDto { get; set; } = new ListingDto();
 
     public UserDto UserDto { get; set; } = new UserDto();
 
@@ -28,7 +28,7 @@ public partial class JobDetails : ComponentBase
     protected async override Task OnInitializedAsync()
     {
         // Fetching the listing from the API
-        ListingDto = await _listingService.GetListing(Id);
+        _listingDto = await _listingService.GetListing(Id);
 
         // If the user is logged in, then lets retrieve their information
         UserDto = await _userService.GetMyInfoAuthCheck();
@@ -41,6 +41,6 @@ public partial class JobDetails : ComponentBase
         if (UserDto == null)
             return false;
 
-        return UserDto.UserId == ListingDto.UserId;
+        return UserDto.UserId == _listingDto.UserId;
     }
 }
