@@ -32,4 +32,11 @@ public class ListingService
         ListingDto listing = await _httpClient.MakeGetRequest<ListingDto>(path);
         return listing;
     }
+
+    public async Task<List<ListingDto>> GetMyListings()
+    {
+        string path = $"/{_version}/listing/getMyListings";
+        List<ListingDto> listings = await _httpClient.MakeGetRequest<List<ListingDto>>(path);
+        return listings;
+    }
 }

@@ -14,6 +14,8 @@ public partial class JobDetails : ComponentBase
 
     public ListingDto ListingDto { get; set; } = new ListingDto();
 
+    public ListingDto UserDto { get; set; } = new ListingDto();
+
     [Inject]
     private ListingService _listingService { get; set; }
 
@@ -24,6 +26,8 @@ public partial class JobDetails : ComponentBase
     {
         // Fetching the listing from the API
         ListingDto = await _listingService.GetListing(Id);
+
+        
 
         await base.OnInitializedAsync();
     }

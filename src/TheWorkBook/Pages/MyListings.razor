@@ -1,0 +1,126 @@
+﻿@page "/mylistings"
+
+@using TheWorkBook.Data
+@using TheWorkBook.Dto
+
+<div class="m-2">
+
+    <div class="row bg-light mb-4">
+        <div class="col-2">
+            <a onclick="goBack()">
+                <i class="oi oi-chevron-left"></i>
+            </a>
+        </div>
+        <div class="col-6">
+            <h4>My Ads</h4>
+        </div>
+        <div class="col-2">
+            <a href="/postjobbegin" class="btn btn-primary tr-theme">
+                <i class="oi oi-plus"></i>
+            </a>
+        </div>
+    </div>
+
+    @if (!HasSearchResults)
+    {
+        <p><em>Any listings you have created are shown here...</em></p>
+    }
+    else
+    {
+        <div class="mt-4 position-relative">
+            <hr />
+            @foreach (var listing in _myJobListingsViewModel.Listings)
+            {
+                @*Item 1 - start*@
+                <div class="shadow-lg p-3 mb-4 bg-white rounded-3">
+                    <div class="mb-4">
+                        <h4 class="d-inline">@listing.Title</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div>
+                                <label class="">
+                                    <b>
+                                        Where:
+                                    </b>
+                                </label>
+                                <div>
+                                    @listing.LocationName
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 ">
+                            <div class="float-end">
+                                <label class="">
+                                    <b>
+                                        Posted:
+                                    </b>
+                                </label>
+                                <div>
+                                    @listing.AdvertAge
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* <div class="row">
+            <div class="col-6">
+            <label>
+            <b>Hours needed:</b>
+
+            </label>
+            <span>
+            30hrs/Week
+            </span>
+            </div>
+            <div class="col-6 ">
+            <div class="float-end">
+            <label class="">
+            <b>
+            Duration:
+            </b>
+            </label>
+            <div>
+            Less than 1 month
+            </div>
+            </div>
+            </div>
+            <div class="col-6">
+            <label>
+            <b>
+            Experience Level:
+            </b>
+            </label>
+            <span>
+            Expert
+            </span>
+            </div>
+            </div>*@
+
+                    <p class="mt-4">
+                        @listing.MainDescription
+                    </p>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                Budget:
+                            </label>
+                            <span>
+                                €@listing.BudgetText
+                            </span>
+                        </div>
+                        <div class="col-6">
+                            <a href="jobdetails/@listing.ListingId" class="btn btn-outline-primary tr-theme float-end">
+                                View Details
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <hr />
+            }
+        </div>
+    }
+</div>
+
+

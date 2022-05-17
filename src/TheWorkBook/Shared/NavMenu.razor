@@ -16,14 +16,16 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        @*<div class="nav-item px-3">
-            <NavLink class="nav-link" href="joblisting/1">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Job Listing
-            </NavLink>
-        </div>*@
+
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="postjobbegin">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Post Job
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="mylistings">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> My Listings
             </NavLink>
         </div>
 
@@ -63,7 +65,7 @@
         request.BrowserDisplayMode = IdentityModel.OidcClient.Browser.DisplayMode.Hidden;
         request.IdTokenHint = await SecureStorage.GetAsync(OidcConsts.IdentityTokenKeyName);
         await client.LogoutAsync(request);
-        
+
         await SecureStorage.SetAsync(OidcConsts.AccessTokenKeyName, string.Empty);
         await SecureStorage.SetAsync(OidcConsts.RefreshTokenKeyName, string.Empty);
         await CheckLoggedIn();
