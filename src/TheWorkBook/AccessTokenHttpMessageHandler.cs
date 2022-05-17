@@ -29,7 +29,8 @@ public class AccessTokenHttpMessageHandler : DelegatingHandler
             // If we were just checking if the user was authenticated, then we don't want to start an auth flow.
             if (request.RequestUri.ToString().Contains("authcheck"))
             {
-                // allow the Unauthorized response to return.
+                // Here, we allow the Unauthorized response to return.This is because
+                // we don't want to start an auth flow if the user isn't authenticated.
                 return response;
             }
 

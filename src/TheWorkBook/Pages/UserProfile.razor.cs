@@ -3,6 +3,7 @@ using TheWorkBook.Data;
 using TheWorkBook.Dto;
 
 namespace TheWorkBook.Pages;
+
 public partial class UserProfile : ComponentBase
 {
     [Inject]
