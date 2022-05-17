@@ -47,13 +47,13 @@ jobs:
         run: dotnet restore src/TheWorkBook/TheWorkBook.csproj
 
       - name: Build MAUI Android
-        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Release -f net6.0-android --no-restore
+        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-android --no-restore
 
       - name: Upload Android Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
           name: android-ci-build
-          path: src/TheWorkBook/bin/Release/net6.0-android/*Signed.a*
+          path: src/TheWorkBook/bin/Debug/net6.0-android/*Signed.a*
 
 # MAUI Windows Build
   build-windows:
@@ -82,13 +82,13 @@ jobs:
         run: dotnet restore src/TheWorkBook/TheWorkBook.csproj
 
       - name: Build MAUI Windows
-        run: msbuild src/TheWorkBook/TheWorkBook.csproj -r -p:Configuration=Release -p:RestorePackages=false -p:TargetFramework=net6.0-windows10.0.19041 /p:GenerateAppxPackageOnBuild=true
+        run: msbuild src/TheWorkBook/TheWorkBook.csproj -r -p:Configuration=Debug -p:RestorePackages=false -p:TargetFramework=net6.0-windows10.0.19041 /p:GenerateAppxPackageOnBuild=true
 
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
           name: windows-ci-build
-          path: src/TheWorkBook/bin/Release/net6.0-windows*/**/TheWorkBook*.msix
+          path: src/TheWorkBook/bin/Debug/net6.0-windows*/**/TheWorkBook*.msix
 
 # MAUI iOS Build
   build-ios:
@@ -113,13 +113,13 @@ jobs:
         run: dotnet restore src/TheWorkBook/TheWorkBook.csproj
 
       - name: Build MAUI iOS
-        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Release -f net6.0-ios --no-restore
+        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-ios --no-restore
 
       - name: Upload iOS Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
           name: ios-ci-build
-          path: src/TheWorkBook/bin/Release/net6.0-ios/**/*.app/
+          path: src/TheWorkBook/bin/Debug/net6.0-ios/**/*.app/
 
 # MAUI MacCatalyst Build
   build-mac:
@@ -144,10 +144,10 @@ jobs:
         run: dotnet restore src/TheWorkBook/TheWorkBook.csproj
 
       - name: Build MAUI MacCatalyst
-        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Release -f net6.0-maccatalyst --no-restore
+        run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-maccatalyst --no-restore
 
       - name: Upload MacCatalyst Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
           name: macos-ci-build
-          path: src/TheWorkBook/bin/Release/net6.0-maccatalyst/**/*.app/
+          path: src/TheWorkBook/bin/Debug/net6.0-maccatalyst/**/*.app/
