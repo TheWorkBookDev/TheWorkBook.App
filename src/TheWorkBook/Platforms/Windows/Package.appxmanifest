@@ -22,7 +22,9 @@
 
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
-      <uap:VisualElements />
+      <uap:VisualElements  DisplayName="The WorkBook">
+        <uap:DefaultTile/>
+      </uap:VisualElements >
     </Application>
   </Applications>
 

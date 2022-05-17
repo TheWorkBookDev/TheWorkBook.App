@@ -14,10 +14,13 @@ public partial class JobDetails : ComponentBase
 
     public ListingDto ListingDto { get; set; } = new ListingDto();
 
-    public ListingDto UserDto { get; set; } = new ListingDto();
+    public UserDto UserDto { get; set; } = new UserDto();
 
     [Inject]
     private ListingService _listingService { get; set; }
+
+    [Inject]
+    private UserService _userService { get; set; }
 
     [Inject]
     private NavigationManager _navigationManager { get; set; }
@@ -27,18 +30,17 @@ public partial class JobDetails : ComponentBase
         // Fetching the listing from the API
         ListingDto = await _listingService.GetListing(Id);
 
-        
+        // If the user is logged in, then lets retrieve their information
+        UserDto = await _userService.GetMyInfoAuthCheck();
 
         await base.OnInitializedAsync();
     }
 
-    private void GoToSubmitProposal()
+    private bool IsUsersListing()
     {
-        _navigationManager.NavigateTo("postproposal");
-    }
+        if (UserDto == null)
+            return false;
 
-    private void UpdateJobDetails()
-    {
-
+        return UserDto.UserId == ListingDto.UserId;
     }
 }

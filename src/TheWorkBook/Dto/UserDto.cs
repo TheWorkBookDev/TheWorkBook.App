@@ -3,6 +3,9 @@
 namespace TheWorkBook.Dto;
 public class UserDto
 {
+    [JsonPropertyName("userId")]
+    public int UserId { get; set; }
+    
     [JsonPropertyName("firstName")]
     public string FirstName { get; set; }
 

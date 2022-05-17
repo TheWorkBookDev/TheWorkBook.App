@@ -63,6 +63,16 @@
 		<EmbeddedResource Include="appsettings.json" />
 	</ItemGroup>
 
+	<ItemGroup Condition="$(TargetFramework.EndsWith('-ios'))">
+		<None Remove="Properties\launchSettings.json" />
+		<None Remove="Platforms\Android\google-services.json" />
+		<None Remove="appsettings.json" />
+		<Content Remove="Properties\launchSettings.json" />
+		<Content Remove="Platforms\Android\google-services.json" />
+		<Content Remove="appsettings.json" />
+		<EmbeddedResource Remove="appsettings.json" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="IdentityModel.OidcClient" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.5" />
