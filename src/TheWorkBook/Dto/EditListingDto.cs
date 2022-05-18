@@ -24,4 +24,20 @@ public class EditListingDto
 
     [JsonPropertyName("userId")]
     public int UserId { get; set; }
+
+    public string BudgetText
+    {
+        get
+        {
+            return Budget.ToString("0.####");
+        }
+        set
+        {
+            decimal budget;
+            if (decimal.TryParse(value, out budget))
+            {
+                Budget = budget;
+            }
+        }
+    }
 }
