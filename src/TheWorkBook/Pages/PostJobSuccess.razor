@@ -1,5 +1,6 @@
 ﻿@page "/postjobsuccess"
 @page "/postjobsuccess/{CategoryId:int}"
+@page "/updatejobsuccess/{ListingId:int}"
 
 <div class="row bg-light mb-5">
     <div class="col-2">
@@ -14,6 +15,6 @@
 
 <div class="m-2">
     <p>You're listing was successfully posted.</p>
-    <button>View Ad</button>
+    <a href="/jobdetails/@ListingId">View Listing</a>
 </div>
 

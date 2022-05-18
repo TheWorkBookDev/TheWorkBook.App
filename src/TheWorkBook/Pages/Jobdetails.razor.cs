@@ -9,9 +9,6 @@ public partial class JobDetails : ComponentBase
     [Parameter]
     public int Id { get; set; }
 
-    //[Parameter]
-    public string Text { get; set; }
-
     private ListingDto _listingDto { get; set; } = new ListingDto();
 
     public UserDto UserDto { get; set; } = new UserDto();
@@ -21,9 +18,6 @@ public partial class JobDetails : ComponentBase
 
     [Inject]
     private UserService _userService { get; set; }
-
-    [Inject]
-    private NavigationManager _navigationManager { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
@@ -39,6 +33,15 @@ public partial class JobDetails : ComponentBase
     private bool IsUsersListing()
     {
         if (UserDto == null)
+            return false;
+
+        if (UserDto.UserId < 1)
+            return false;
+
+        if (_listingDto == null)
+            return false;
+
+        if (_listingDto.ListingId < 1)
             return false;
 
         return UserDto.UserId == _listingDto.UserId;

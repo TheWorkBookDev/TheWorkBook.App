@@ -73,10 +73,21 @@ public partial class PostJob : ComponentBase
             await ListingService.CreateListing(viewModel.EditListingDto);
         else await ListingService.UpdateListing(viewModel.EditListingDto);
 
-        string navigateTo = "/postjobsuccess";
+        string navigateTo = String.Empty;
+
         if (CategoryId > 0)
-            navigateTo += "/" + CategoryId;
-        
+        {
+            navigateTo = "/postjobsuccess/" + CategoryId;
+        }
+        else if (ListingId > 0)
+        {
+            navigateTo = "/updatejobsuccess/" + ListingId;
+        }
+        else
+        {
+            navigateTo = "/postjobsuccess";
+        }
+
         NavigationManager.NavigateTo(navigateTo);
     }
 
