@@ -21,6 +21,12 @@ public class ListingService
         return result;
     }
 
+    public async Task DeactivateListing(int listingId)
+    {
+        string path = $"/{_version}/listing/deactivate";
+        _ = await _httpClient.MakePostRequest<string, int>(path, listingId);
+    }
+
     public async Task<EditListingDto> GetEditListing(int listingId)
     {
         var parameters = new NameValueCollection

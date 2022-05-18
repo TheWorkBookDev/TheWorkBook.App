@@ -7,4 +7,3 @@ public class SearchResponse
     [JsonPropertyName("listings")]
     public List<ListingDto> Listings { get; set; }
 }
-

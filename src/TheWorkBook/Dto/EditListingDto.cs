@@ -25,6 +25,9 @@ public class EditListingDto
     [JsonPropertyName("userId")]
     public int UserId { get; set; }
 
+    [JsonPropertyName("telephone")]
+    public string Telephone { get; set; }
+
     public string BudgetText
     {
         get

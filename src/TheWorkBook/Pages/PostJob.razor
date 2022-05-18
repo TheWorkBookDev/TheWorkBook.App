@@ -64,11 +64,11 @@
             <div class="col-12">
                 <label>Describe the job/need</label>
                 <textarea class="form-control" rows="5" @bind="@viewModel.EditListingDto.MainDescription" @bind:event="oninput"
-                    placeholder="Enter description of the service of work required...">                
+                          placeholder="Enter description of the service of work required...">                
                 </textarea>
             </div>
         </div>
-        
+
         @* <div class="row mb-4">
         <div class="col-12">
         <label>Hours Needed</label>
@@ -127,20 +127,20 @@
         </div>
 
         @*<div class="row mb-4">
-            <div class="col-12">
-                <label>
-                    Per
-                </label>
-                <span>
-                    <select class="form-select">
-                        <option value="-1">Choose</option>
-                        <option>Hour</option>
-                        <option>Day</option>
-                        <option>Week</option>
-                        <option>Job</option>
-                    </select>
-                </span>
-            </div>
+        <div class="col-12">
+        <label>
+        Per
+        </label>
+        <span>
+        <select class="form-select">
+        <option value="-1">Choose</option>
+        <option>Hour</option>
+        <option>Day</option>
+        <option>Week</option>
+        <option>Job</option>
+        </select>
+        </span>
+        </div>
         </div>*@
         @*
         <div class="row mb-4">
@@ -154,9 +154,21 @@
         </div>
         </div>*@
 
+        <div class="row mb-4">
+            <div class="col-12">
+                <label>Contact</label>
+                <input class="form-control" placeholder="Enter telephone..." @bind-value="@viewModel.EditListingDto.Telephone" />
+            </div>
+        </div>
 
         <div class="row my-5">
-            <div class="col-12 text-center">
+            @if (ListingId > 0)
+            {
+                <div class="col-6 text-center">
+                    <button class="btn btn-outline-danger" @onclick="RemoveListingClicked">Unlist</button>
+                </div>
+            }
+            <div class="col-6 text-center">
                 <button class="btn btn-outline-primary tr-theme" @onclick="PostJobClicked">@CallToActionText</button>
             </div>
         </div>

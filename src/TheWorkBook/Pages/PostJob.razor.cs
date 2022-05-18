@@ -91,6 +91,12 @@ public partial class PostJob : ComponentBase
         NavigationManager.NavigateTo(navigateTo);
     }
 
+    public async Task RemoveListingClicked()
+    {
+        await ListingService.DeactivateListing(ListingId);
+        NavigationManager.NavigateTo("/");
+    }
+
     private string CallToActionText
     {
         get
