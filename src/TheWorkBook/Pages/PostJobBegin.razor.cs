@@ -16,7 +16,6 @@ public partial class PostJobBegin : ComponentBase
     [Inject]
     private NavigationManager NavigationManager { get; set; }
 
-
     protected async override Task OnInitializedAsync()
     {
         // We call GetMyInfo to ensure the user is authenticated

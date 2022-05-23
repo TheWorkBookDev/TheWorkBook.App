@@ -21,21 +21,14 @@ public static class HttpClientExtensions
 
     public static async Task<T> MakeGetRequest<T>(this HttpClient httpClient, Uri requestUri)
     {
-        try
+        string response;
+        using (var httpResponse = await httpClient.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead))
         {
-            string response;
-            using (var httpResponse = await httpClient.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead))
-            {
-                httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
-                response = await httpResponse.Content.ReadAsStringAsync();
-            }
+            httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
+            response = await httpResponse.Content.ReadAsStringAsync();
+        }
 
-            return GetResult<T>(response);
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
+        return GetResult<T>(response);
     }
 
     public static async Task<T> MakePatchRequest<T, U>(this HttpClient httpClient, string requestString, U postData)
@@ -49,17 +42,10 @@ public static class HttpClientExtensions
         string serializedDoc = JsonSerializer.Serialize(postData);
         var requestContent = new StringContent(serializedDoc, Encoding.UTF8, "application/json-patch+json");
 
-        try
-        {
-            using var httpResponse = await httpClient.PatchAsync(requestUri, requestContent);
-            httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
-            string response = await httpResponse.Content.ReadAsStringAsync();
-            return GetResult<T>(response);
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
+        using var httpResponse = await httpClient.PatchAsync(requestUri, requestContent);
+        httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
+        string response = await httpResponse.Content.ReadAsStringAsync();
+        return GetResult<T>(response);
     }
 
     public static async Task<T> MakePostRequest<T, U>(this HttpClient httpClient, string requestString, U postData)
@@ -70,17 +56,10 @@ public static class HttpClientExtensions
 
     public static async Task<T> MakePostRequest<T, U>(this HttpClient httpClient, Uri requestUri, U postData)
     {
-        try
-        {
-            using var httpResponse = await httpClient.PostAsJsonAsync(requestUri, postData);
-            httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
-            string response = await httpResponse.Content.ReadAsStringAsync();
-            return GetResult<T>(response);
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
+        using var httpResponse = await httpClient.PostAsJsonAsync(requestUri, postData);
+        httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
+        string response = await httpResponse.Content.ReadAsStringAsync();
+        return GetResult<T>(response);
     }
 
     public static async Task<T> MakePutRequest<T, U>(this HttpClient httpClient, Uri requestUri, U postData)
@@ -97,7 +76,7 @@ public static class HttpClientExtensions
         {
             return default;
         }
-        
+
         T result;
         if (typeof(T) == typeof(string))
         {

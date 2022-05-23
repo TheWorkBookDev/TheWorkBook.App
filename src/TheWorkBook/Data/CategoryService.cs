@@ -16,15 +16,8 @@ public class CategoryService
 
     public async Task<List<CategoryDto>> GetCategoriesAsync()
     {
-        try
-        {
-            List<CategoryDto> categories = await _httpClient.MakeGetRequest<List<CategoryDto>>($"/{_version}/category/getCategories");
-            return categories;
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
+        List<CategoryDto> categories = await _httpClient.MakeGetRequest<List<CategoryDto>>($"/{_version}/category/getCategories");
+        return categories;
     }
 
     public async Task<CategoryDto> GetCategoryAsync(int categoryId)

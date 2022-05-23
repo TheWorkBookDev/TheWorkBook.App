@@ -79,11 +79,5 @@ public partial class JobListing : ComponentBase
 
     private void OnSearchChange(object value, string name)
     {
-
-    }
-
-    void OnLocationChange()
-    {
-        //var str = value is IEnumerable<object> ? string.Join(", ", (IEnumerable<object>)value) : value;
     }
 }
