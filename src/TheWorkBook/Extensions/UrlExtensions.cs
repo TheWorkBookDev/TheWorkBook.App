@@ -22,10 +22,22 @@ public static class UriExtensions
         string str = "?";
         for (int index = 0; index < parameters.Count; ++index)
         {
-            stringBuilder.Append(str + parameters.AllKeys[index] + "=" + parameters[index]);
-            str = "&";
+            string value = parameters[index];
+            if (value.IndexOf(",") > -1)
+            {
+                string[] strArray = value.Split(new[] { ',' });
+                foreach (string s in strArray)
+                {
+                    stringBuilder.Append(str + parameters.AllKeys[index] + "=" + s);
+                    str = "&";
+                }
+            }
+            else
+            {
+                stringBuilder.Append(str + parameters.AllKeys[index] + "=" + value);
+                str = "&";
+            }
         }
         return stringBuilder.ToString();
     }
 }
-
