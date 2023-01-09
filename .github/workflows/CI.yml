@@ -50,7 +50,7 @@ jobs:
         run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-android
 
       - name: Upload Android Artifact
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: android-ci-build
           path: src/TheWorkBook/bin/Debug/net6.0-android/*Signed.a*
@@ -85,7 +85,7 @@ jobs:
         run: msbuild src/TheWorkBook/TheWorkBook.csproj -r -p:Configuration=Debug -p:RestorePackages=false -p:TargetFramework=net6.0-windows10.0.19041 /p:GenerateAppxPackageOnBuild=true
 
       - name: Upload Windows Artifact
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: windows-ci-build
           path: src/TheWorkBook/bin/Debug/net6.0-windows*/**/TheWorkBook*.msix
@@ -116,7 +116,7 @@ jobs:
         run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-ios
 
       - name: Upload iOS Artifact
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: ios-ci-build
           path: src/TheWorkBook/bin/Debug/net6.0-ios/**/*.app/
@@ -147,7 +147,7 @@ jobs:
         run: dotnet build src/TheWorkBook/TheWorkBook.csproj -c Debug -f net6.0-maccatalyst --no-restore
 
       - name: Upload MacCatalyst Artifact
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: macos-ci-build
           path: src/TheWorkBook/bin/Debug/net6.0-maccatalyst/**/*.app/
