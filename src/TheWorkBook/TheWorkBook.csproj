@@ -76,7 +76,7 @@
 	<ItemGroup>
 		<PackageReference Include="IdentityModel.OidcClient" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.5" />
-		<PackageReference Include="Radzen.Blazor" Version="3.18.2" />
+		<PackageReference Include="Radzen.Blazor" Version="4.6.0" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
 	</ItemGroup>
 
